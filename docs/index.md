@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 开卷!
-      link: /guide/what-is-vitepress
+      link: /web-doc/index
     - theme: alt
       text: 还是躺会先?
       link: https://v.qq.com/channel/cartoon/list?filter_params=iarea%3D1&page_id=
