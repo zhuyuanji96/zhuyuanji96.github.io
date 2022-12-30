@@ -1,0 +1,19 @@
+{
+  "name": "zhuyuanji-notes",
+  "version": "1.0.0",
+  "description": "学习文档&工作笔记",
+  "homepage": "https://zhuyuanji96.github.io/notes",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs",
+    "preview": "vitepress preview docs --port 8080"
+  },
+  "repository": "https://github.com/zhuyuanji96/notes.git",
+  "author": "zhuyuanji",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.31"
+  }
+}
