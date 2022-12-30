@@ -1,7 +1,6 @@
 const config = {
   title: 'YJ丶',
   titleTemplate: '学习记录',
-  base: '/notes/',
   outDir: '../public',
   themeConfig: {
     // // 页脚编辑链接
