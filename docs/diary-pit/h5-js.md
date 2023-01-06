@@ -1,5 +1,24 @@
 # 移动端H5页面js相关问题记录&解决
 
+## globalThis is not defined部分浏览器报错
+
+#### 坑位描述
+
+最近发现部分安卓手机在App中打开 `vite` 打包的页面时页面加载不出来。后来发现报错提示`globalThis is not defined`，打包后的js有使用全局变量
+`globalThis` 但是有些浏览器环境下咩有定义`globalThis`。
+
+#### 解决方法
+
+在html头部加上如下代码：
+```html
+<head>
+    <script>
+        this.globalThis || (this.globalThis = this)
+    </script>
+    ...
+</head>
+```
+
 ## JS复制文案在异步方法中复制失败
 
 ::: details 复制文本方法实现
