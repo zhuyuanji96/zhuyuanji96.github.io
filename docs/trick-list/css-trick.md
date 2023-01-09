@@ -1,5 +1,156 @@
 # CSS 奇淫技巧
 
+## clip-path实现线条边框动画
+
+clip-path属性表示对元素进行剪裁，而且此支持animation动画，基于此，给剪裁的各个方向添加动画可以实现意想不到的动画效果。
+
+::: details 点击查看详情
+```css
+.item {
+  position: relative;
+  &::before,
+  &::after {
+    // 将两个伪类向外扩张10px
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    animation: clippath 3s infinite linear;
+    border-radius: 10px;
+  }
+  &::after {
+    // after伪类提前执行1.5秒动画，达到跟before动画错位的效果
+    animation: clippath 3s infinite -1.5s linear;
+  }
+}
+
+/* keyframes动画定向改变clip-path的4个方向上剪裁的量 */
+@keyframes clippath {
+  0%,
+  100% {
+    clip-path: inset(0 0 98% 0);
+  }
+  25% {
+    clip-path: inset(0 98% 0 0);
+  }
+  50% {
+    clip-path: inset(98% 0 0 0);
+  }
+  75% {
+    clip-path: inset(0 0 0 98%);
+  }
+}
+```
+:::
+
+![img load err](./images/clip-path-1.gif)
+
+给伪类加上背景颜色可以看到动画的具体效果
+
+```css
+.item {
+  background: transparent;
+  &::before,
+  &::after {
+    background-color: gold;
+  }
+}
+```
+
+![img load err](./images/clip-path-2.gif)
+
+## clip-path和filter实现圆角渐变色边框动画
+
+```css
+.item {
+  border: 10px solid;
+  /* 使用border-image实现渐变边框 */
+  border-image: linear-gradient(45deg, gold, deeppink) 1;
+  /* border-image不支持圆角，使用clip-path实现圆角 */
+  clip-path: inset(0px round 10px);
+  animation: huerotate 6s infinite linear;
+}
+/* 对应色值进行旋转 */
+@keyframes huerotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+```
+![img load err](./images/clip-path-filter.gif)
+
+## border-radius实现波浪动画
+
+当border-radius的值接近50%，但是不足50%时，给元素加上旋转，会让元素的边界产生一种波浪效果。
+![img load err](./images/border-radius-1.gif)
+
+将两个透明度不一致，圆角不一致的元素叠加在一起，在加上旋转动画就可以实现波浪效果。
+![img load err](./images/border-radius-2.gif)
+
+只展示出元素底边的部分，就达到了我们最终的效果。
+::: details 点击查看详情
+```css
+.item {
+  /* 将超出的部分隐藏，只展示出旋转元素的底边 */
+  overflow: hidden;
+  .item-con {
+    position: relative;
+    border-radius: 50%;
+    &::before,
+    &::after {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 42%;
+      animation: rotate 10s linear infinite;
+      top: -300px;
+      z-index: 10;
+    }
+
+    &::after {
+      /* 圆角背景不一致 */
+      border-radius: 48%;
+      background-color: white;
+      /* 使用动画错位 */
+      animation: rotate 10s linear -3.5s infinite;
+      z-index: 20;
+    }
+  }
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+```
+:::
+
+![img load err](./images/border-radius-3.gif)
+
+
+## 巧用transform-origin属性
+
+transform-origin属性可以改变元素的变形原点，利用这点可以实现鼠标移入移出的同向动画
+
+```css
+div {
+  &::before {
+    // 默认的变形原点为右侧
+    transform: scaleX(0);
+    transform-origin: 100% 0;
+  }
+  &:hover::before {
+    // 鼠标hover时将变形原点置为左侧
+    transform: scaleX(1);
+    transform-origin: 0 0;
+  }
+}
+```
+![img load err](./images/transform-origin.gif)
+
+
 ## 伪元素content实现打点loading动画
 
 通过动态设置伪元素content属性的内容，加上CSS3的step帧动画，可以实现一个打点的动画
