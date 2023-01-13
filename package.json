@@ -5,7 +5,7 @@
   "homepage": "https://zhuyuanji96.github.io/notes",
   "main": "index.js",
   "scripts": {
-    "dev": "vitepress dev docs",
+    "dev": "vitepress dev docs --port 6688 --host",
     "build": "vitepress build docs",
     "serve": "vitepress serve docs",
     "preview": "vitepress preview docs --port 8080"
