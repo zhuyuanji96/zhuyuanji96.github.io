@@ -91,3 +91,78 @@
   - [JavaScript 深入之 bind 的模拟实现](https://github.com/mqyqingfeng/Blog/issues/12)
   - [从一道面试题的进阶，到“我可能看了假源码”](https://zhuanlan.zhihu.com/p/25379434)
   - [从一道面试题的进阶，到“我可能看了假源码”（2）](https://zhuanlan.zhihu.com/p/25483361)
+
+
+
+## 交叉/交集观测器 IntersectionObserver
+[MDN链接](https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API)
+
+使用场景：检测`dom`元素是否进入视口【滚动加载；懒加载；广告曝光】
+
+使用: ` const io = new IntersectionObserver(callback, option);`
+
+实例方法：
+
+- io.observe(elem)    // 开始检测
+- io.unobserve(elem)  // 停止检测
+- io.disconnect()     // 关闭检测器
+
+
+
+::: tip option 配置对象 
+
+有三个属性 `{threshold: [0], root: null, rootMargin: '0px'}`
+
+1.threshold: 临界值 决定触发回调函数的时机， 值为数字 或 数字数组默认 [0], 表示intersectionRatio达到0时触发回调
+
+2.root: 指定观测的目标元素所在的根节点，即容器；必须是目标元素的祖先节点默认为浏览器视窗
+
+3.rootMargin: 根元素root的外边距；写法规则同css的margin计算交集范围时，可以扩展和缩小root元素的计算边界默认'0px'
+
+:::
+
+::: tip callback 
+
+每当 `intersectionRatio`满足该`IntersectionObserver`指定的`threshold`值，回调被调用`cb`有两个参数 
+
+1、由`IntersectionObserverEntry`对象组成的数组
+
+- boundingClientRect: 目标元素矩形信息
+- intersectionRatio: 交叉比例
+- intersectionRect: 交叉区域矩形信息
+- isIntersecting: 是否交叉
+- isVisible: ***未知属性
+- rootBounds: 根元素矩形信息
+- target: 目标元素
+- time: 时间戳
+
+2、io实例 （基本不用）
+
+:::
+
+### 简单示例： 滚动加载
+
+``` html 在列表底部放一个 'loading'元素用于观测
+<ul>
+  {goodsList.map(v =>  <li key={v}> {v.goodsTitle} </li> )}
+</ul>
+<div className="loding">loading</div>
+```
+
+``` js
+  const io = new IntersectionObserver(
+    entries => {
+      if (entries[0].isIntersecting) {
+        console.log('loading元素出现在视窗，请求加载list');
+        io.unobserve(v.target); // 防止重复触发 加载时停止观测
+        // 加载函数 getGoodsList() 
+        // 加载完成 重新打开观测 io.observe(targetElement) 
+     	}
+    }, {
+      threshold: [0.5],
+      root: null,
+      rootMargin: '0px'
+    }
+  );
+  io.observe(document.querySelector('.loading'));
+  ```
