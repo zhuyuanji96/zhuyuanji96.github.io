@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app.cf617c6c.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"diary-pit/index.md"}'),r={name:"diary-pit/index.md"};function n(o,i,s,c,d,p){return a(),t("div")}const f=e(r,[["render",n]]);export{m as __pageData,f as default};
