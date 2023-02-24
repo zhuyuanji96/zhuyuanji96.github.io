@@ -1,4 +1,9 @@
 ---
+head:
+  - - script
+    - src: /js/algoliasearch.js
+      
+
 layout: home
 
 hero:
