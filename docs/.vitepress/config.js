@@ -109,9 +109,9 @@ const config = {
       ]
     },
     algolia: {
-      appId: 'B1Z0XSGSTJ',
-      apiKey: '3e46e0dfed813e90f69f9a1980be29d7',
-      indexName: 'netlify_bb1d7170-a600-48b8-afd3-e742a45ea79b*',
+      appId: 'WURVWK9X9S',
+      apiKey: 'bb5efd6d46de48998ad214e90ecdb35e',
+      indexName: 'zhuyuanji96io',
       placeholder: '搜索',
       translations: {
         button: {
