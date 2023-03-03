@@ -1,8 +1,4 @@
 ---
-head:
-  - - script
-    - src: /js/algoliasearch.js
-      
 
 layout: home
 
@@ -22,7 +18,7 @@ hero:
       link: https://v.qq.com/channel/cartoon/list?filter_params=iarea%3D1&page_id=
 
 features:
-    - title: 整理一些 knowledge
+    - title: 整理一些 knowledge 
       details: Copy整理前端相关知识点，保证内容原滋原味，标点符号都不会改一下！
     - title: 记录一些 pit
       details: 随缘记录一些 ‘你我他’ 踩过的坑，种类多种多样，保证不带重样！

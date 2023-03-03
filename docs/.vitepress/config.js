@@ -1,4 +1,6 @@
-const config = {
+import { defineConfig } from 'vitepress';
+
+export default defineConfig({
   title: 'YJ丶',
   titleTemplate: '学习记录',
   outDir: '../public',
@@ -9,6 +11,7 @@ const config = {
     // },
     nav: [
       { text: '简介', link: '/' },
+      { text: '站点传送', link: '/nav-link/index.md' },
       // {
       //   text: '知识梳理',
       //   items: [
@@ -153,7 +156,6 @@ const config = {
       }
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/zhuyuanji96' }]
-  }
-};
-
-export default config;
+  },
+  plugins: []
+});

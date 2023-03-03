@@ -14,6 +14,7 @@
   "author": "zhuyuanji",
   "license": "MIT",
   "devDependencies": {
-    "vitepress": "^1.0.0-alpha.31"
-  }
+     "vitepress": "^1.0.0-alpha.31"
+  },
+  "dependencies": {}
 }
