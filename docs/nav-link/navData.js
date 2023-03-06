@@ -21,10 +21,22 @@ export const NAV_DATA = [
         link: 'https://tool.lu'
       },
       {
-        icon: '/icons/json-cn.ico',
+        icon: 'https://img.alicdn.com/imgextra/i2/O1CN01FF1t1g1Q3PDWpSm4b_!!6000000001920-55-tps-508-135.svg',
+        title: 'iconfont',
+        desc: '阿里巴巴矢量图标库',
+        link: 'https://www.iconfont.cn/'
+      },
+      {
+        icon: 'data:image/png;base64,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',
         title: 'Json 中文网',
         desc: 'JSON 在线解析及格式化验证',
         link: 'https://www.json.cn'
+      },
+      {
+        icon: 'https://www.processon.com/assets/images/logo_small.svg',
+        title: 'processon',
+        desc: '免费在线流程图思维导图',
+        link: 'https://www.processon.com/'
       }
     ]
   },
@@ -186,8 +198,7 @@ export const NAV_DATA = [
         link: 'https://svelte.dev'
       },
       {
-        // icon: 'https://simpleicons.org/icons/jquery.svg',
-        icon: '/icons/jquery.svg',
+        icon: 'https://simpleicons.org/icons/jquery.svg',
         title: 'jQuery API 中文文档',
         desc: '一个兼容多浏览器的 JavaScript 框架',
         link: 'https://jquery.cuishifeng.cn'
@@ -262,10 +273,10 @@ export const NAV_DATA = [
         link: 'https://expressjs.com'
       },
       {
-        icon: 'https://nodejs.org/static/images/favicons/',
+        icon: 'https://github.com/koajs/koa/raw/master/docs/logo.png',
         title: 'Koa',
         desc: '基于 Node.js 平台的下一代 web 开发框架',
-        link: 'https://koajs.com'
+        link: 'https://koa.bootcss.com/#'
       },
       {
         icon: 'https://www.eggjs.org/favicon.png',
@@ -361,12 +372,7 @@ export const NAV_DATA = [
         title: 'SWC',
         desc: 'Rust-based platform for the Web',
         link: 'https://swc.rs'
-      }
-    ]
-  },
-  {
-    title: '静态网站生成器',
-    items: [
+      },
       {
         icon: 'https://cn.vuejs.org/logo.svg',
         title: 'VitePress',
@@ -390,12 +396,30 @@ export const NAV_DATA = [
         title: 'Docusaurus',
         desc: '基于 React 的静态网站生成器',
         link: 'https://docusaurus.io/zh-CN/'
+      },
+      {
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-LUnu_P6Tg0JH1W1a3PJXq0wHONNYJPi5cA&usqp=CAU',
+        title: 'Netlify',
+        desc: '使用任何前端框架从 Git 构建、预览和部署到我们的全球网络。',
+        link: 'https://app.netlify.com/'
       }
     ]
   },
   {
     title: '前端学习资料',
     items: [
+      {
+        icon: 'data:image/png;base64,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',
+        title: 'ECMAScript 6 入门',
+        desc: '《ECMAScript 6 入门教程》是一本开源的 JavaScript 语言教程，全面介绍 ECMAScript 6 新引入的语法特性。',
+        link: 'https://es6.ruanyifeng.com/'
+      },
+      {
+        icon: 'https://static.leetcode.cn/cn-mono-assets/production/assets/logo-dark-cn.4c5e285b.svg',
+        title: 'leetcode',
+        desc: '题库- 力扣(LeetCode) 全球极客挚爱的技术成长平台',
+        link: 'https://leetcode.cn/'
+      },
       {
         icon: 'https://developer.mozilla.org/apple-touch-icon.6803c6f0.png',
         title: 'MDN | Web 开发者指南',
@@ -407,6 +431,12 @@ export const NAV_DATA = [
         title: '菜鸟教程',
         desc: '学的不仅是技术，更是梦想！',
         link: 'https://www.runoob.com'
+      },
+      {
+        icon: 'data:image/png;base64,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',
+        title: 'BootCDN',
+        desc: '稳定、快速、免费的前端开源项目 CDN 加速服务',
+        link: 'https://www.bootcdn.cn/'
       }
     ]
   },
@@ -415,9 +445,7 @@ export const NAV_DATA = [
     items: [
       {
         title: 'Github',
-        icon: {
-          svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>'
-        },
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5czpvMCAQZh1xf5IFg7iD052P7lRwy3M9cg2HuKoRyw&s',
         desc: '一个面向开源及私有软件项目的托管平台',
         link: 'https://github.com'
       },
@@ -448,7 +476,7 @@ export const NAV_DATA = [
       {
         title: '博客园',
         // icon: 'https://common.cnblogs.com/favicon.ico',
-        icon: '/icons/cnblogs.svg',
+        icon: 'https://www.cnblogs.com/images/logo.svg?v=R9M0WmLAIPVydmdzE2keuvnjl-bPR7_35oHqtiBzGsM',
         desc: '博客园是一个面向开发者的知识分享社区',
         link: 'https://www.cnblogs.com'
       },
@@ -464,13 +492,19 @@ export const NAV_DATA = [
     title: '摸鱼专用',
     items: [
       {
+        icon: 'data:image/png;base64,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',
+        title: '奇の旅-梯子🪜',
+        desc: '',
+        link: 'https://www.q1travel.cloud/aff.php?aff=8569'
+      },
+      {
         icon: 'https://www.youtube.com/s/desktop/014dbbed/img/favicon_48x48.png',
         title: 'YouTube',
         desc: '',
         link: 'https://www.youtube.com'
       },
       {
-        icon: '/icons/twitter.svg',
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi7kflFoA83pZ3yAUarKXB8Ky4DvpOTycmMtoIXLcoBQ&s',
         title: 'Twitter',
         desc: '',
         link: 'https://twitter.com'

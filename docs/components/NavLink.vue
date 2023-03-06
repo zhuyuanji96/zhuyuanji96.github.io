@@ -11,10 +11,10 @@ defineProps<{
 </script>
 
 <template>
-  <VPLink class="YJFeature" :href="link" :no-icon="true">
+  <VPLink class="NavLink" :href="link" :no-icon="true">
     <article class="box">
       <div class="top">
-        <VPImage v-if="icon" :image="icon" alt="YJ" :height="36" :width="36" />
+        <VPImage v-if="icon" class="link-icon" :image="icon" alt="YJ" />
         <h2 class="title" v-html="title"></h2>
       </div>
       <p v-if="desc" class="details" v-html="desc"></p>
@@ -23,7 +23,7 @@ defineProps<{
 </template>
 
 <style scoped>
-.YJFeature {
+.NavLink {
   display: block;
   border: 1px solid var(--vp-c-bg-soft);
   border-radius: 12px;
@@ -32,7 +32,7 @@ defineProps<{
   transition: border-color 0.25s, background-color 0.25s;
 }
 
-.YJFeature.link:hover {
+.NavLink.link:hover {
   border-color: var(--vp-c-brand);
   background-color: var(--vp-c-bg-soft-up);
 }
@@ -48,25 +48,14 @@ defineProps<{
   align-items: center;
 }
 
-.YJFeature:deep(.YJImage) {
-  /* width: fit-content; */
-  margin-bottom: 20px;
-}
-
-.icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  background-color: var(--vp-c-bg-soft-down);
-  width: 48px;
-  height: 48px;
-  font-size: 24px;
-  transition: background-color 0.25s;
+.NavLink:deep(.link-icon) {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
 }
 
 .title {
-  margin: 0;
+  margin: 0 0 0 12px;
   padding: 0;
   line-height: 24px;
   font-size: 16px;
@@ -76,6 +65,7 @@ defineProps<{
 
 .details {
   flex-grow: 1;
+  margin-top: 8px;
   padding-top: 8px;
   line-height: 24px;
   font-size: 14px;

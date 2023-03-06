@@ -27,12 +27,16 @@ const grid = computed(() => {
     return 'grid-6';
   } else if (length % 2 === 0) {
     return 'grid-4';
+  } else if (length % 3 === 2) {
+    return 'grid-3';
+  } else if (length % 3 === 1) {
+    return 'grid-4';
   }
 });
 </script>
 
 <template>
-  <div v-if="list" class="VPFeatures">
+  <div v-if="list" class="webDoc">
     <div class="container">
       <div class="items">
         <div v-for="nav in list" :key="nav.title" class="item" :class="[grid]">
@@ -44,19 +48,19 @@ const grid = computed(() => {
 </template>
 
 <style scoped>
-.VPFeatures {
+.webDoc {
   position: relative;
   padding: 0 24px;
 }
 
 @media (min-width: 640px) {
-  .VPFeatures {
+  .webDoc {
     padding: 0 48px;
   }
 }
 
 @media (min-width: 960px) {
-  .VPFeatures {
+  .webDoc {
     padding: 0;
   }
 }
@@ -98,6 +102,13 @@ const grid = computed(() => {
 }
 
 @media (min-width: 960px) {
+  .item.grid-3,
+  .item.grid-6 {
+    width: calc(100% / 3);
+  }
+  .item.grid-2 {
+    width: calc(100% / 2);
+  }
   .item.grid-4 {
     width: calc(100% / 4);
   }
