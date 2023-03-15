@@ -37,6 +37,12 @@ export const NAV_DATA = [
         title: 'processon',
         desc: '免费在线流程图思维导图',
         link: 'https://www.processon.com/'
+      },
+      {
+        icon: 'https://www.67tool.com/avatar.png',
+        title: '即时工具',
+        desc: '安全、快捷、好用的在线工具箱~',
+        link: 'https://www.67tool.com/'
       }
     ]
   },
@@ -261,7 +267,7 @@ export const NAV_DATA = [
     title: 'Node 相关',
     items: [
       {
-        icon: 'https://nodejs.org/static/images/favicons/apple-touch-icon.png',
+        icon: 'https://nodejs.org/static/images/logo.svg',
         title: 'Node.js',
         desc: 'Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境',
         link: 'https://nodejs.org/zh-cn'
@@ -431,6 +437,12 @@ export const NAV_DATA = [
         title: '菜鸟教程',
         desc: '学的不仅是技术，更是梦想！',
         link: 'https://www.runoob.com'
+      },
+      {
+        icon: 'data:image/png;base64,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',
+        title: 'TypeScript入门教程',
+        desc: '从 JavaScript 程序员的角度总结思考，循序渐进的理解 TypeScript。',
+        link: 'https://www.tslang.cn/docs/handbook/basic-types.html'
       },
       {
         icon: 'data:image/png;base64,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',

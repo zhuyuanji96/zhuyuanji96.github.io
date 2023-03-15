@@ -64,6 +64,12 @@ export default defineConfig({
       ],
       '/study-blog/': [
         {
+          text: '前端大杂烩',
+          collapsible: true,
+          collapsed: false,
+          items: [{ text: 'TS内置类型与拓展', link: '/study-blog/ts-built-in-type' }]
+        },
+        {
           text: '不仅仅是前端',
           collapsible: true,
           collapsed: false,
