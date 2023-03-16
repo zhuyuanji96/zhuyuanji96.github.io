@@ -67,7 +67,10 @@ export default defineConfig({
           text: '前端大杂烩',
           collapsible: true,
           collapsed: false,
-          items: [{ text: 'TS内置类型与拓展', link: '/study-blog/ts-built-in-type' }]
+          items: [
+            { text: 'TS内置类型', link: '/study-blog/ts-built-in-type' },
+            { text: 'TS语法拓展', link: '/study-blog/ts-extend' }
+          ]
         },
         {
           text: '不仅仅是前端',

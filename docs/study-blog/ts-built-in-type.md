@@ -133,6 +133,11 @@ type PickExample = Pick<Example, "a"|"b">;
  */
 ```
 
+::: tip  `K extends keyof T` 解析
+`K extends keyof T` 是用来约束 `K` 的条件，即，传入 `K` 的参数必须使得这个条件为真，否则 `ts` 就会报错，也就是说`K` 的联合项必须来自接口 `T` 的属性。
+ 如果是 `type PickExample = Pick<Example, "a"|"d">` 则会报错：类型 `"a" | "d"` 不满足约束 `keyof Example`
+:::
+
 ## Omit
 `Omit<Type, Keys>` 通过从Type中选择所有属性然后删除 `Keys` 来构造一个类型，与 `Pick<Type, Keys>` 功能相反。
 
@@ -175,6 +180,15 @@ type ExcludeExample = Exclude<"a"|"b"|"c"|"z", "a"|"b"|"d">;
  * ExcludeExample
  * "c" | "z"
  */
+
+// 拆解执行过程
+type A =  Exclude<"a"|"b"|"c"|"z", "a"|"b"|"d">;
+// 等价于
+type A = Exclude<"a", "a"|"b"|"d"> | Exclude<"b", "a"|"b"|"d"> | Exclude<"c", "a"|"b"|"d"> | Exclude<"z", "a"|"b"|"d">;
+// =>
+type A = ("a" extends "a"|"b"|"d" ? never : "a") | ("b" extends "a"|"b"|"d" ? never : "b") | ("c" extends "a"|"b"|"d" ? never : "c") | ("z" extends "a"|"b"|"d" ? never : "z")
+// =>
+type A = never | never | "c" | "z" = "c" | "z" // never是所有类型的子类型
 ```
 
 ## Extract
@@ -193,6 +207,15 @@ type ExtractExample = Extract<"a"|"b"|"c"|"z", "a"|"b"|"d">;
  * ExtractExample
  * "a" | "b"
  */
+
+// 拆解执行过程
+type A =  Extract<"a"|"b"|"c"|"z", "a"|"b"|"d">;
+// 等价于
+type A = Extract<"a", "a"|"b"|"d"> | Extract<"b", "a"|"b"|"d"> | Extract<"c", "a"|"b"|"d"> | Extract<"z", "a"|"b"|"d">;
+// =>
+type A = ("a" extends "a"|"b"|"d" ? "a" : never) | ("b" extends "a"|"b"|"d" ? "b" : never) | ("c" extends "a"|"b"|"d" ? "c" : never) | ("z" extends "a"|"b"|"d" ? "z" : never)
+// =>
+type A = "a" | "b" | never | never = "a" | "b" // never是所有类型的子类型
 ```
 
 ## NonNullable
@@ -390,6 +413,8 @@ console.log(toHex27()); // 1b
 ## ThisType
 `ThisType<Type>` 可以在对象字面量中键入 `this`，并提供通过上下文类型控制 `this` 类型的便捷方式，其只有在 `--noImplicitThis` 的选项下才有效。
 
+[noImplicitThis 注解 👀 ](https://www.typescriptlang.org/tsconfig#noImplicitThis)
+
 ``` ts
 /**
  * Marker for contextual 'this' type
@@ -409,4 +434,80 @@ const foo2: { bar: () => void } & ThisType<{ a: number }> = {
         console.log(this.a); // ok
     }
 }
+```
+
+## Uppercase
+`Uppercase<StringType>` 将 `StringType` 转为大写，`TS` 以内置关键字 `intrinsic` 来通过编译期来实现。
+
+``` ts
+/**
+ * Convert string literal type to uppercase
+ */
+
+type Uppercase<S extends string> = intrinsic;
+
+//eg:
+type UppercaseExample = Uppercase<"abc">;
+
+/**
+ * UppercaseExample
+ * ABC
+ */
+```
+
+## Lowercase
+`Lowercase<StringType>` 将 `StringType` 转为小写。
+
+``` ts
+/**
+ * Convert string literal type to lowercase
+ */
+
+type Lowercase<S extends string> = intrinsic;
+
+//eg:
+type LowercaseExample = Lowercase<"ABC">;
+
+/**
+ * LowercaseExample
+ * abc
+ */
+```
+
+## Capitalize
+`Capitalize<StringType>` 将 `StringType` 首字母转为大写。
+
+``` ts
+/**
+ * Convert first character of string literal type to uppercase
+ */
+
+type Capitalize<S extends string> = intrinsic;
+
+// eg:
+type CapitalizeExample = Capitalize<"abc">;
+
+/**
+ * CapitalizeExample
+ * Abc
+ */
+```
+
+## Uncapitalize
+`Uncapitalize<StringType>` 将 `StringType` 首字母转为小写。
+
+``` ts
+/**
+ * Convert first character of string literal type to lowercase
+ */
+
+type Uncapitalize<S extends string> = intrinsic;
+
+// eg:
+type UncapitalizeExample = Uncapitalize<"ABC">;
+
+/**
+ * CapitalizeExample
+ * aBC
+ */
 ```
