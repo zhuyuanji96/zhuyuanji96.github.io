@@ -69,7 +69,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'TS内置类型', link: '/study-blog/ts-built-in-type' },
-            { text: 'TS语法拓展', link: '/study-blog/ts-extend' }
+            { text: 'TS拓展语法', link: '/study-blog/ts-extend' }
           ]
         },
         {

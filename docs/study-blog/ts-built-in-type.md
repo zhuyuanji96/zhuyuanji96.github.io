@@ -138,6 +138,8 @@ type PickExample = Pick<Example, "a"|"b">;
  如果是 `type PickExample = Pick<Example, "a"|"d">` 则会报错：类型 `"a" | "d"` 不满足约束 `keyof Example`
 :::
 
+[点击查看 `extends` 关键词解析](/study-blog/ts-extend.html#extend) 
+
 ## Omit
 `Omit<Type, Keys>` 通过从Type中选择所有属性然后删除 `Keys` 来构造一个类型，与 `Pick<Type, Keys>` 功能相反。
 

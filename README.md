@@ -10,3 +10,4 @@
 ## 访问地址
 
 - <https://zhuyuanji96.github.io>
+- <https://zhuyuanji.netlify.app>
