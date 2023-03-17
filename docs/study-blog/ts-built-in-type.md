@@ -337,31 +337,6 @@ type InstanceTypeExample = InstanceType<ExampleConstructor>;
 ```
 
 ## ThisParameterType
-`ThisParameterType<Type>` 提取函数类型的this参数的类型，如果函数类型没有 `this` 参数，则为 `unknown`。
-
-``` ts
-/**
- * Extracts the type of the 'this' parameter of a function type, or 'unknown' if the function type has no 'this' parameter.
- */
-
-type ThisParameterType<T> = T extends (this: infer U, ...args: any[]) => any ? U : unknown;
-
-// eg:
-function toHex(this: Number) {
-  return this.toString(16);
-}
-
-type ThisParameterTypeExample = ThisParameterType<typeof toHex>;
-
-console.log(toHex.apply(27)); // 1b
-
-/**
- * ThisParameterTypeExample
- * Number
- */
-```
-
-## ThisParameterType
 `ThisParameterType<Type>` 提取函数类型的 `this` 参数的类型，如果函数类型没有 `this` 参数，则为 `unknown`。
 
 ``` ts
