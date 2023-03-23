@@ -68,6 +68,7 @@ export default defineConfig({
           collapsible: true,
           collapsed: false,
           items: [
+            { text: 'JS原型、原型链', link: '/study-blog/js-prototype' },
             { text: 'JS装饰器', link: '/study-blog/js-decorator' },
             { text: 'TS内置类型', link: '/study-blog/ts-built-in-type' },
             { text: 'TS拓展语法', link: '/study-blog/ts-extend' }
