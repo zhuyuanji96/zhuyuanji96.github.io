@@ -194,23 +194,23 @@ export const NAV_DATA = [
       }
     ]
   },
-  {
-    title: 'JavaScript 框架类库',
-    items: [
-      {
-        icon: 'https://svelte.dev/svelte-logo-horizontal.svg',
-        title: 'Svelte',
-        desc: '将声明性组件转换为精准高效更新 DOM 的 JavaScript 代码',
-        link: 'https://svelte.dev'
-      },
-      {
-        icon: 'https://simpleicons.org/icons/jquery.svg',
-        title: 'jQuery API 中文文档',
-        desc: '一个兼容多浏览器的 JavaScript 框架',
-        link: 'https://jquery.cuishifeng.cn'
-      }
-    ]
-  },
+  // {
+  //   title: 'JavaScript 框架类库',
+  //   items: [
+  //     {
+  //       icon: 'https://svelte.dev/svelte-logo-horizontal.svg',
+  //       title: 'Svelte',
+  //       desc: '将声明性组件转换为精准高效更新 DOM 的 JavaScript 代码',
+  //       link: 'https://svelte.dev'
+  //     },
+  //     {
+  //       icon: 'https://simpleicons.org/icons/jquery.svg',
+  //       title: 'jQuery API 中文文档',
+  //       desc: '一个兼容多浏览器的 JavaScript 框架',
+  //       link: 'https://jquery.cuishifeng.cn'
+  //     }
+  //   ]
+  // },
   {
     title: 'CSS 相关',
     items: [
@@ -501,7 +501,7 @@ export const NAV_DATA = [
     ]
   },
   {
-    title: '摸鱼专用',
+    title: 'AI & 摸鱼',
     items: [
       {
         icon: 'data:image/png;base64,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',
@@ -520,6 +520,26 @@ export const NAV_DATA = [
         title: 'Twitter',
         desc: '',
         link: 'https://twitter.com'
+      },
+      {
+        icon: 'https://chat.openai.com/favicon-32x32.png',
+        title: 'Chat GPT',
+        link: 'https://chat.openai.com/chat'
+      },
+      {
+        icon: 'https://cdn.document360.io/logo/3040c2b6-fead-4744-a3a9-d56d621c6c7e/778d06e9a335497ba965629e3b83a31f-MJ_Boat.png',
+        title: 'Midjourney',
+        link: 'https://www.midjourney.com/app/'
+      },
+      {
+        icon: 'https://cdn.discordapp.com/embed/avatars/0.png',
+        title: 'Discord',
+        link: 'https://discord.com/'
+      },
+      {
+        icon: 'https://lexica.art/favicon.ico',
+        title: 'Lexica',
+        link: 'https://lexica.art/'
       },
       {
         icon: 'https://momoyu.cc/icon-192.png',
