@@ -39,7 +39,10 @@ export default defineConfig({
             { text: '类型转换', link: '/web-doc/js-conversions.md' },
             { text: 'ES6常用知识点', link: '/web-doc/es6.md' },
             { text: 'JS基础API介绍&实现', link: '/web-doc/js-base-api.md' },
-            { text: 'JS模块化', link: '/web-doc/module.md' }
+            { text: 'JS模块化', link: '/web-doc/module.md' },
+            { text: 'JS原型、原型链', link: '/web-doc/js-prototype' },
+            { text: 'JS装饰器', link: '/web-doc/js-decorator' },
+            { text: 'JS设计模式', link: '/web-doc/js-design-pattern' }
           ]
         },
         {
@@ -68,8 +71,6 @@ export default defineConfig({
           collapsible: true,
           collapsed: false,
           items: [
-            { text: 'JS原型、原型链', link: '/study-blog/js-prototype' },
-            { text: 'JS装饰器', link: '/study-blog/js-decorator' },
             { text: 'TS内置类型', link: '/study-blog/ts-built-in-type' },
             { text: 'TS拓展语法', link: '/study-blog/ts-extend' }
           ]
