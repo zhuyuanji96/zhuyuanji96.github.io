@@ -72,7 +72,8 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'TS内置类型', link: '/study-blog/ts-built-in-type' },
-            { text: 'TS拓展语法', link: '/study-blog/ts-extend' }
+            { text: 'TS拓展语法', link: '/study-blog/ts-extend' },
+            { text: 'Vite3实现H5多入口打包', link: '/study-blog/vite3-h5' }
           ]
         },
         {
