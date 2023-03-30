@@ -42,7 +42,8 @@ export default defineConfig({
             { text: 'JS模块化', link: '/web-doc/module.md' },
             { text: 'JS原型、原型链', link: '/web-doc/js-prototype' },
             { text: 'JS装饰器', link: '/web-doc/js-decorator' },
-            { text: 'JS设计模式', link: '/web-doc/js-design-pattern' }
+            { text: 'JS设计模式', link: '/web-doc/js-design-pattern' },
+            { text: 'JS异步解决方案', link: '/web-doc/js-async-await' }
           ]
         },
         {
