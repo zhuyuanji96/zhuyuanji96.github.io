@@ -120,6 +120,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'H5-JS坑位', link: '/diary-pit/h5-js' },
+            { text: 'React坑位', link: '/diary-pit/react' },
             { text: 'PC-CSS坑位', link: '/diary-pit/pc-css' }
           ]
         }
