@@ -52,6 +52,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'HTML', link: '/web-doc/html.md' },
+            { text: 'CSS 变量', link: '/web-doc/css-variables.md' },
             { text: '页面渲染方式', link: '/web-doc/page-rendering.md' }
           ]
         },
