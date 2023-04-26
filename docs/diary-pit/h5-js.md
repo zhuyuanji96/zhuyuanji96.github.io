@@ -105,3 +105,18 @@ const pageshowFn = (e) => {
 window.addEventListener('pageshow', pageshowFn)
 ```
 
+## html2canvas 绘制文案向下偏移
+
+#### 原因
+
+有些第三方样式或者 `init.css` 样式全局设置了 `img { display: block; }`
+
+#### 解决方案
+
+在目标页面重置 `img` 全局样式即可
+
+``` css
+img {
+   display: initial; 
+}
+```
