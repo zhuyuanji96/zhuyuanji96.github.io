@@ -53,6 +53,7 @@ export default defineConfig({
           items: [
             { text: 'HTML', link: '/web-doc/html.md' },
             { text: 'CSS 变量', link: '/web-doc/css-variables.md' },
+            { text: 'flex 简介', link: '/web-doc/css-flex.md' },
             { text: '页面渲染方式', link: '/web-doc/page-rendering.md' }
           ]
         },
