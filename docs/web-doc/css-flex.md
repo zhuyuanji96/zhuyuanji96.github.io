@@ -258,4 +258,4 @@
 
 该属性可能取6个值，除了 `auto`，其他都与 `align-items` 属性完全一致。
 
-[原文链接](https://developer.mozilla.org/zh-CN/docs/Glossary/Semantics)
+[原文链接](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)

@@ -105,9 +105,12 @@ const pageshowFn = (e) => {
 window.addEventListener('pageshow', pageshowFn)
 ```
 
-## html2canvas 绘制文案向下偏移
+## `html2canvas` 踩坑记录
 
-#### 原因
+记录 `html2canvas` 使用过程中遇到的一些问题
+### `html2canvas` 绘制文案向下偏移
+
+原因: 
 
 有些第三方样式或者 `init.css` 样式全局设置了 `img { display: block; }`
 
@@ -120,3 +123,18 @@ img {
    display: initial; 
 }
 ```
+
+### html2canvas 绘制的图片模糊
+
+问题描述：
+
+不要使用 `background-image:url()` 属性，实验发现用这个属性渲染出来的图片都很糊，用img标签就好了。
+
+问题补充：
+
+``` js
+scale: indow.devicePixelRatio || 1,
+```
+
+如果使用 `background-image:url()` 属性，用设备像素比设置 `scale` 参数，图片依旧模糊，需要注意。
+

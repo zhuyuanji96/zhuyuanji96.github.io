@@ -54,6 +54,7 @@ export default defineConfig({
             { text: 'HTML', link: '/web-doc/html.md' },
             { text: 'CSS 变量', link: '/web-doc/css-variables.md' },
             { text: 'flex 简介', link: '/web-doc/css-flex.md' },
+            { text: 'flex 使用实例', link: '/web-doc/css-flex-eg.md' },
             { text: '页面渲染方式', link: '/web-doc/page-rendering.md' }
           ]
         },
@@ -76,7 +77,8 @@ export default defineConfig({
           items: [
             { text: 'TS内置类型', link: '/study-blog/ts-built-in-type' },
             { text: 'TS拓展语法', link: '/study-blog/ts-extend' },
-            { text: 'Vite3实现H5多入口打包', link: '/study-blog/vite3-h5' }
+            { text: 'Vite3实现H5多入口打包', link: '/study-blog/vite3-h5' },
+            { text: 'H5唤起手机拨号和发短信功能', link: '/study-blog/jsInvokePhone' }
           ]
         },
         {
