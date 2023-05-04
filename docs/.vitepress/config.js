@@ -78,7 +78,8 @@ export default defineConfig({
             { text: 'TS内置类型', link: '/study-blog/ts-built-in-type' },
             { text: 'TS拓展语法', link: '/study-blog/ts-extend' },
             { text: 'Vite3实现H5多入口打包', link: '/study-blog/vite3-h5' },
-            { text: 'H5唤起手机拨号和发短信功能', link: '/study-blog/jsInvokePhone' }
+            { text: 'H5唤起手机拨号和发短信功能', link: '/study-blog/jsInvokePhone' },
+            { text: '微信小程序装饰模式功能扩展', link: '/study-blog/we-app-extend.md' }
           ]
         },
         {
