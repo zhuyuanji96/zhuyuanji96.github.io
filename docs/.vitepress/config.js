@@ -126,7 +126,8 @@ export default defineConfig({
           items: [
             { text: 'H5-JS坑位', link: '/diary-pit/h5-js' },
             { text: 'React坑位', link: '/diary-pit/react' },
-            { text: 'PC-CSS坑位', link: '/diary-pit/pc-css' }
+            { text: 'PC-CSS坑位', link: '/diary-pit/pc-css' },
+            { text: 'RN Android开发踩坑之路', link: '/diary-pit/RN-android' }
           ]
         }
       ]
