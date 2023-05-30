@@ -120,6 +120,24 @@ export const NAV_DATA = [
         title: 'ahooks',
         desc: '一套高质量可靠的 React Hooks 库',
         link: 'https://ahooks.js.org/zh-CN'
+      },
+      {
+        icon: 'https://reactnative.cn/img/header_logo.svg',
+        title: 'React Native',
+        desc: '用于构建跨端程序的 JavaScript 库',
+        link: 'https://reactnative.cn/'
+      },
+      {
+        icon: 'https://reactnative.directory/favicon-32x32.png',
+        title: 'React Native Directory',
+        desc: 'React Native 开发工具库 搜索平台',
+        link: 'https://reactnative.directory/'
+      },
+      {
+        icon: 'https://reactnavigation.org/img/spiro.svg',
+        title: 'React Navigation',
+        desc: 'Routing and navigation for Expo and React Native apps.',
+        link: 'https://reactnavigation.org/'
       }
     ]
   },
