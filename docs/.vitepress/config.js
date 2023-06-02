@@ -91,6 +91,7 @@ export default defineConfig({
             { text: 'npm常用指令', link: '/study-blog/npm-command' },
             { text: 'vsCode配置', link: '/study-blog/vscode-config' },
             { text: 'Zsh命令行工具', link: '/study-blog/zsh' },
+            { text: 'iTerm2 Profiles快捷登录ssh', link: '/study-blog/iterm2' },
             { text: '浏览器扩展整理', link: '/study-blog/browser-extend' },
             { text: '网页工具整理', link: '/study-blog/utils-network' }
           ]
