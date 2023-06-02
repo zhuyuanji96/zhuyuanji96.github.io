@@ -130,6 +130,12 @@ export default defineConfig({
             { text: 'PC-CSS坑位', link: '/diary-pit/pc-css' },
             { text: 'RN Android开发踩坑之路', link: '/diary-pit/RN-android' }
           ]
+        },
+        {
+          text: '踩坑踩出前端系',
+          collapsible: true,
+          collapsed: false,
+          items: [{ text: '系统相关', link: '/diary-pit/server' }]
         }
       ]
     },
