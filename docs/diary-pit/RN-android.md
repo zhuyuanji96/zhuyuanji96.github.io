@@ -151,6 +151,14 @@ export default class WelcomePage extends Component {
 
 但是在组件使用的过程中还是有些组件会有问题，最终用的还是 `react native` 官方封装的组件。所以这里强烈建议能用官方提供的组件尽量使用官方的。
 
+### `react-native link @ant-design/icons-react-native` 无效
+
+在使用 `Ant Design Mobile RN` 按照文档配置时 `react-native link @ant-design/icons-react-native` 无效。字体图标无法关联到对应的文件夹，导致使用图标的时候，字体图标无法加载。
+
+目前解决方案是手动复制 `node_modules/@ant-design/icons-react-native/fonts` 到 `android/app/src/main/assets/fonts` 设置一下 `fonts` 文件。
+
+[GitHub Issues](https://github.com/crazycodeboy/react-native-splash-screen)
+
 ## 项目开发注意事项
 
 ### 样式编写相关
