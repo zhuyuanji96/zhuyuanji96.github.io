@@ -267,3 +267,64 @@ git reflog
 ```
 
 [参考地址：阮一峰 -- 常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+
+## `git` 合并其他仓库的分支
+
+最近有个需求就是把 `A` 项目的功能复制一份到 `B` 项目以作为 `A` 项目备胎，因为 2 个项目的代码基本一致，只有部分配置项不一致。然后去选择性复制文件，慢慢比较又觉得很烦，所以就研究了下把仓库`A` 的 `master` 分支，需要合到仓库 `B` 的 `master` 分支。废话不多说，直接上代码！
+
+- 主仓库：A：master
+- 备份仓库：B：master
+  
+默认在 `B` 仓库的 `master` 分支上
+
+### 将主仓库的地址添加到自己本地的远程仓库中
+
+``` sh
+# git remote add 仓库名称 地址
+git remote add bOrigin git@github.xxx.com:B/code.git 
+```
+
+现在 `git remote` 一下可以看见本地有两个远程仓库：
+
+``` sh
+git remote
+# bOrigin
+# origin
+```
+
+### 抓取仓库数据到本仓库中
+
+``` sh
+# git fetch 仓库名称
+git fetch bOrigin 
+```
+
+### 创建一个新的分支 `bMaster`
+
+这是将远程主仓库的代码在本地新建一个分支，稍后会将这个分支的代码和本地代码 `merge`，这样也就是将主仓库代码和自己仓库的代码 `merge`了
+
+``` sh
+# git checkout -b 新分支名称 远程仓库名称/远程分支名称
+git checkout -b bMaster bOrigin/master
+```
+
+### 切回 `B` 项目 `master` 分支
+
+现在本地有两个分支：一个是之前的 `master`，这个分支的代码就是自己仓库的代码。一个新增的分支 `bMaster` 这个是主仓库的代码
+
+``` sh
+git checkout master
+```
+
+### 合并两个分支（也就是将两个仓库的代码 `merge`）
+
+``` sh
+# git merge 分支名称
+git merge bMaster
+```
+### 可能会合并失败并提示 `fatal: refusing to merge unrelated histories`
+
+解决方案： 在你操作命令后面加 `--allow-unrelated-histories`
+``` sh
+git merge master --allow-unrelated-histories
+```
