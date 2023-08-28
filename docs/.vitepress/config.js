@@ -88,6 +88,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'git常用指令', link: '/study-blog/git-command' },
+            { text: 'git常用配置', link: '/study-blog/git-record' },
             { text: 'npm常用指令', link: '/study-blog/npm-command' },
             { text: 'vsCode配置', link: '/study-blog/vscode-config' },
             { text: 'Zsh命令行工具', link: '/study-blog/zsh' },
