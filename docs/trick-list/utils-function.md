@@ -135,4 +135,19 @@ const isWeChat = /micromessenger/.test(UA)
 
 // 移动端
 const isMobile = 'ontouchstart' in window
+
+// 获取ios版本号
+const getIosVersion = () => {
+  const result = navigator.userAgent.toLowerCase().match(/cpu iphone os (.*?) like mac os/) || [];
+
+  return (result[1] || '1').replace(/_/g, '.');
+};
+
+// 获取android版本号
+const getAndroidVersion = () => {
+  const userAgent = navigator.userAgent;
+  const match = userAgent.match(/Android\s([0-9\.]*)/);
+  
+  return (match || [])[1] || '1';
+};
 ```
