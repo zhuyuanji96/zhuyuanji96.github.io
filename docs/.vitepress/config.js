@@ -52,6 +52,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'HTML', link: '/web-doc/html.md' },
+            { text: 'CSS之冷门BUT很实用系列', link: '/web-doc/css-attributes.md' },
             { text: 'CSS 变量', link: '/web-doc/css-variables.md' },
             { text: 'flex 简介', link: '/web-doc/css-flex.md' },
             { text: 'flex 使用实例', link: '/web-doc/css-flex-eg.md' },
@@ -186,5 +187,8 @@ export default defineConfig({
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/zhuyuanji96' }]
   },
-  plugins: []
+  plugins: [],
+  vue: {
+    // @vitejs/plugin-vue options
+  }
 });
