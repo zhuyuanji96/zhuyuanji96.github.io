@@ -318,6 +318,230 @@ clip-path: circle(40%);  //半径为40%，圆心默认为中心
   kinds of daring feats, the nerve-racking excitement that they have ceased to find on earth.
 </div>
 
+椭圆裁剪
+``` css
+clip-path: ellipse(130px 140px at 10% 20%);
+```
+<div style="width: 500px; height: 358px;text-align: left;background-color:gray;color:white">
+  <img
+    style="float: left; margin:20px; clip-path: ellipse(130px 140px at 10% 20%);"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+    width="150"
+  />
+  We had agreed, my companion and I, that I should call for him at his house, after dinner, not later than eleven
+  o’clock. This athletic young Frenchman belongs to a small set of Parisian sportsmen, who have taken up “ballooning” as
+  a pastime. After having exhausted all the sensations that are to be found in ordinary sports, even those of
+  “automobiling” at a breakneck speed, the members of the “Aéro Club” now seek in the air, where they indulge in all
+  kinds of daring feats, the nerve-racking excitement that they have ceased to find on earth.
+</div>
+
+多边形裁剪
+``` css
+clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+```
+<div style="width: 500px; height: 358px;text-align: left;background-color:gray;color:white">
+  <img
+    style="float: left; margin:20px; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+    width="150"
+  />
+  We had agreed, my companion and I, that I should call for him at his house, after dinner, not later than eleven
+  o’clock. This athletic young Frenchman belongs to a small set of Parisian sportsmen, who have taken up “ballooning” as
+  a pastime. After having exhausted all the sensations that are to be found in ordinary sports, even those of
+  “automobiling” at a breakneck speed, the members of the “Aéro Club” now seek in the air, where they indulge in all
+  kinds of daring feats, the nerve-racking excitement that they have ceased to find on earth.
+</div>
+
+我们可以看到上面图形如何裁剪，外面的看不见的框始终是矩形，也就是说文字始终是按矩形的样式在周围环绕。
+
+那么有办法让文字紧紧的贴在裁剪的图形周围呢？
+
+有的，使用 `shape-outside` 属性
+
+`shape-outside` 定义了一个可以是 非矩形的形状，相邻的内联内容应围绕该形状进行包裹。默认情况下，内联内容包围其矩形边距;
+
+圆形环绕
+``` css
+clip-path: circle(40%); 
+shape-outside: circle(40%);
+```
+<div style="width: 500px; height: 358px;text-align: left;background-color:gray;color:white">
+  <img
+    style="float: left; margin:20px; clip-path: circle(40%); shape-outside: circle(40%);"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+    width="150"
+  />
+  We had agreed, my companion and I, that I should call for him at his house, after dinner, not later than eleven
+  o’clock. This athletic young Frenchman belongs to a small set of Parisian sportsmen, who have taken up “ballooning” as
+  a pastime. After having exhausted all the sensations that are to be found in ordinary sports, even those of
+  “automobiling” at a breakneck speed, the members of the “Aéro Club” now seek in the air, where they indulge in all
+  kinds of daring feats, the nerve-racking excitement that they have ceased to find on earth.
+</div>
+
+椭圆环绕
+``` css
+clip-path: ellipse(130px 140px at 10% 20%);
+shape-outside: ellipse(130px 140px at 20% 20%);
+```
+<div style="width: 500px; height: 358px;text-align: left;background-color:gray;color:white">
+  <img
+    style="float: left; margin:20px; clip-path: ellipse(130px 140px at 10% 20%); shape-outside: ellipse(130px 140px at 20% 20%);"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+    width="150"
+  />
+  We had agreed, my companion and I, that I should call for him at his house, after dinner, not later than eleven
+  o’clock. This athletic young Frenchman belongs to a small set of Parisian sportsmen, who have taken up “ballooning” as
+  a pastime. After having exhausted all the sensations that are to be found in ordinary sports, even those of
+  “automobiling” at a breakneck speed, the members of the “Aéro Club” now seek in the air, where they indulge in all
+  kinds of daring feats, the nerve-racking excitement that they have ceased to find on earth.
+</div>
+
+多变形环绕
+``` css
+clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+shape-outside: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+```
+<div style="width: 500px; height: 358px;text-align: left;background-color:gray;color:white">
+  <img
+    style="float: left; margin:20px; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); shape-outside: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+    width="150"
+  />
+  We had agreed, my companion and I, that I should call for him at his house, after dinner, not later than eleven
+  o’clock. This athletic young Frenchman belongs to a small set of Parisian sportsmen, who have taken up “ballooning” as
+  a pastime. After having exhausted all the sensations that are to be found in ordinary sports, even those of
+  “automobiling” at a breakneck speed, the members of the “Aéro Club” now seek in the air, where they indulge in all
+  kinds of daring feats, the nerve-racking excitement that they have ceased to find on earth.
+</div>
+
+当然你不一定在圆形裁剪上，使用圆形环绕，你可以在圆形裁剪上使用多边形环绕，在多边形裁剪上，使用菱形环绕。总之这两个之间没关系，不是两两匹配的。都随你便，自己定义。
+
+## object-fit / object-position
+
+`object-fit` 属性指定可替换元素的内容应该如何适应到其使用的高度和宽度确定的框。
+
+`object-position` 属性来指定被替换元素的内容对象在元素框内的对齐方式。
+
+注: 其中可替换元素有 iframe，video，embed，img，还有一些在特性情况也是可替换元素，option，audio，canvas，object
+
+``` html 例子🌰前的准备
+<div style="width: 300px; height: 300px; background-color:gray;">
+  <img 
+    style="height: 100%; width: 100%;" 
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+</div>
+```
+
+`fill填满` 图片会拉变形，宽度和高度都被拉到父容器的 100%，以适应父容器
+
+``` css
+object-fit: fill;
+```
+<div style="width: 300px; height: 300px; background-color:gray;">
+  <img 
+    style="height: 100%; width: 100%; object-fit: fill;" 
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+</div>
+
+`contain包容` 图片不会变形，图片会按照自身比例进行缩放，整个图片放入父容器中，较短的边会出现自动填充的空白。
+
+``` css
+object-fit: contain;
+```
+<div style="width: 300px; height: 300px; background-color:gray;">
+  <img 
+    style="height: 100%; width: 100%; object-fit: contain;" 
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+</div>
+
+`cover覆盖` 图片不会变形，图片会按照自身比例进行缩放，整个图片放入父容器中，按照图片最短的边，纳入父容器为基准。较长的边会溢出
+
+```
+object-fit: cover;
+```
+<div style="width: 300px; height: 300px; background-color:gray;">
+  <img 
+    style="height: 100%; width: 100%; object-fit: cover;" 
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+</div>
+
+`none` 和父容器的宽高没关系。展示其图片最原始的宽高比，以自身图片的“中心”为基点，放置到父容器的“中心”位置。
+
+``` css
+object-fit: none;
+```
+<div style="width: 300px; height: 300px; background-color:gray;">
+  <img 
+    style="height: 100%; width: 100%; object-fit: none;" 
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+</div>
+
+`scale-down` 内容的尺寸与 `none` 或 `contain` 中的一个相同，取决于它们两个之间谁得到的对象尺寸会更小一些。
+``` css
+object-fit: scale-down;
+```
+如果图片比父容器尺寸大，那么按照 `contain` 的效果，如果图片比父容器小，那么按照 `none` 的效果。
+<div style="width: 300px; height: 300px; background-color:gray;">
+  <img 
+    style="height: 100%; width: 100%; object-fit: scale-down;" 
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+</div>
+
+在上面 `object-fit` 的展示中，我们发现可替换元素的对齐方式都是自动的。
+
+比如 `object-fit: fill;` 的左上角和父容器的左上角对齐。
+
+`object-fit: none;` 的中心和父容器的中心对齐等等。
+
+但是我们想手动更改对齐方式呢？？
+
+可以使用 `object-position` 属性， 规定了可替换元素的内容，在其内容框中的位置。
+
+`object-position: 10px 10px;` 可以设置 `px`，第一个值代表距离父容器左边的距离，第二个值代表距离父容器顶部的距离。只有一个数值则只代表距离父容器左侧的距离。
+
+也可以设置`%`数值，但此时只有某一边有空白才会起作用，如果没有空白，刚好铺满父元素，则不起作用。设置 `px` 就没有这样的问题，任何之后都会起作用。
+
+`object-position: right top;` 可以设置关键字，第一个值关键字可设置（left|center|right），第二个关键字可设置(top|center|bottom),此时不表示距离左侧或者顶部的距离，而表示放置在父元素的什么位置。
+
+```css
+object-fit: fill; 
+/* 距离左侧10px，距离顶部10% */
+object-position: 50px 50px;  
+```
+加 `object-position` 前后对比图:
+
+<div style="display: flex; gap:20px;">
+  <div style="width: 300px; height: 300px; background-color:gray;">
+    <img 
+      style="height: 100%; width: 100%; object-fit: fill;" 
+      src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+  </div>
+  <div style="width: 300px; height: 300px; background-color:gray;">
+    <img 
+      style="height: 100%; width: 100%; object-fit: fill; object-position: 50px 50px;" 
+      src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+  </div>
+</div>
+
+```css
+object-fit: contain; 
+/* 停留 右上方 */
+object-position: right top;  
+```
+加 `object-position` 前后对比图:
+
+<div style="display: flex; gap:20px;">
+  <div style="width: 300px; height: 300px; background-color:gray;">
+    <img 
+      style="height: 100%; width: 100%; object-fit: contain;" 
+      src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+  </div>
+  <div style="width: 300px; height: 300px; background-color:gray;">
+    <img 
+      style="height: 100%; width: 100%; object-fit: contain; object-position: right top;" 
+      src="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg">
+  </div>
+</div>
 
 <script setup>
   import { ref } from 'vue';
