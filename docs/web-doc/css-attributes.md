@@ -543,6 +543,329 @@ object-position: right top;
   </div>
 </div>
 
+## max-content / min-content / fill-available / fit-content
+
+这几个值都可用在 `width`, `height`, `min-width`, `min-height`, `max-width` 和 `max-height` 属性上。
+
+`display` 必须为 `inline-block` 或者 `block`，否则上面的值不起作用。
+
+### `fill-available`
+
+元素撑满可用空间。参考的基准为父元素有多宽多高。
+
+类似子元素的 `div` 撑满父元素的宽，fill-available 不仅可以撑满宽还能撑满高。
+
+``` html 例子🌰前的代码
+<div style="width: 300px; height: 100px; background-color:gray;">
+  <span style="display:inline-block;background-color: burlywood;">
+    这是子元素的内容
+  </span>
+</div>
+```
+
+给 `span` 上设置 `fill-available` 时的不同表现
+
+<div style="width: 600px; height: 100px; margin-bottom:10px; background-color:gray;">
+  <span style="display:inline-block;background-color: burlywood;">
+    未设置 fill-available
+  </span>
+</div>
+
+<div style="width: 600px; height: 100px; margin-bottom:10px; background-color:gray;">
+  <span style="display:inline-block;background-color: burlywood; width: -webkit-fill-available;">
+    width: -webkit-fill-available
+  </span>
+</div>
+
+<div style="width: 600px; height: 100px; margin-bottom:10px; background-color:gray;">
+  <span style="display:inline-block;background-color: burlywood; height: -webkit-fill-available">
+    height: -webkit-fill-available
+  </span>
+</div>
+
+<div style="width: 600px; height: 100px; background-color:gray;">
+  <span style="display:inline-block;background-color: burlywood;height: -webkit-fill-available;width: -webkit-fill-available;">
+    height: -webkit-fill-available; width: -webkit-fill-available
+  </span>
+</div>
+
+假如里面的有个元素，是 `img` 呢？它也是 `inline-block`，应该也满足情况。
+
+<div style="width: 200px; height: 200px; margin-bottom: 10px; background-color:gray;">
+   <img
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+  />
+</div>
+
+`height: -webkit-fill-available` img 保持宽高比
+
+<div style="width: 200px; height: 200px; margin-bottom: 10px; background-color:gray;">
+   <img
+    style="display:inline-block; height: -webkit-fill-available"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+  />
+</div>
+
+`width: -webkit-fill-available` img 保持宽高比，此时高度已经超过父元素了
+
+<div style="width: 200px; height: 200px; margin-bottom: 10px; background-color:gray;">
+   <img
+    style="display:inline-block; width: -webkit-fill-available"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+  />
+</div>
+
+`width: -webkit-fill-available; height: -webkit-fill-available` img不保持宽高比
+
+<div style="width: 200px; height: 200px; margin-bottom: 10px; background-color:gray;">
+   <img
+    style="display:inline-block; width: -webkit-fill-available; height: -webkit-fill-available"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"
+  />
+</div>
+
+我们可以看到 `img` 和 `span` 的不同在于，设置 `width` 或者 `height` 其中一个时，整个 `image` 会按照自身比例缩放。
+
+### `max-content`
+
+它的宽度或者高度，会自动调整为，刚刚好容纳下子元素中那个长度最长(按照文字不换行时计算)的元素即可。
+
+参考的基准为子元素有多宽多高。
+
+``` html
+<div class="parent">
+  <div class="current" style="background-color:gray;">
+    <p>这是普通的p元素行，内容为文字</p>
+    <img src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+```
+给 `current` `div` 设置 `max-content` 时得不同表现。
+<div class="parent">
+  <div class="current" style="background-color:gray;">
+    <p>这是普通的p元素行，内容为文字</p>
+    <img src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+
+设置 `width: max-content` 后，按照最长的文字行的宽度为自己的宽度
+
+<div class="parent">
+  <div class="current" style="background-color:gray; width: max-content">
+    <p>设置 width: max-content后，按照最长的文字行的宽度为自己的宽度</p>
+    <img src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+
+设置`width: max-content; writing-mode: vertical-lr;`后，按照最长的列为自己的高度
+
+<div class="parent">
+  <div class="current" style="background-color:gray; height: max-content; writing-mode: vertical-lr;">
+    <p>设置后，按照最长的列为自己的高度</p>
+    <img src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+
+### `min-content`
+
+它的宽度或者高度，会自动调整为，刚刚好容纳下子元素中那个“最小宽度值”最大的元素即可，剩余超长的要么换行，要么溢出
+参考的基准为子元素“最小宽度值”有多宽多高。
+
+什么是“最小宽度值”？
+
+比如图片，最小宽度值，就是图片原始的宽高；如果是一串中文，则最小宽度值为单个汉字的宽高；如果是一串英文，则最小宽度值为里面单词最长的那个。
+
+<div class="parent">
+  <div class="current" style="background-color:gray; width: min-content">
+    <p>设置 `width: min-content` 后，图片和汉字的最小宽度相比，图片更长，所以采取图片的</p>
+    <img style="max-width: none;" src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+
+<div class="parent">
+  <div class="current" style="background-color:gray; width: min-content">
+    <p>设置 `width: min-content` 最小宽度值为肺尘病 pneumonoultramicroscopicsilicovolcanoconiosis 单词，所以采取英文单词的宽</p>
+    <img style="max-width: none;" src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+
+### `fit-content`
+
+表示元素自动伸缩到内容的宽度，和 `max-content` 的区别为，都是刚刚好容纳下子元素中那个长度最长的元素即可。
+
+不同的是 `max-content` 在计算时按照文字不换行时计算，如果超过父元素，则不换行，直接产生滚动条； 而 `fit-content` 在超过父元素后，换行，不产生滚动条。
+
+<div class="parent" style="width: 600px;overflow:auto;">
+  <div class="current" style="background-color:gray; width: max-content">
+    <p>设置 `width: min-content` 长度超过父元素后不换行，直接往后排，产生横向滚动条（前提父元素设置了超出滚动 overflow）</p>
+    <img style="max-width: none;" src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+
+<div class="parent" style="width: 600px;overflow:auto;">
+  <div class="current" style="background-color:gray; width: fit-content">
+    <p>设置 `width: fit-content` 当父容器放不下内容之后，文本会换行，不会产生滚动条 （即使父元素设置了超出滚动 overflow）</p>
+    <img style="max-width: none;" src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+  </div>
+</div>
+
+## image-rendering
+用来设置，当元素展示比例不是 原图(100%)时，图像得缩放算法。
+
+举个例子，如果有一张尺寸为 100×100px 的图片，但作者有意将尺寸设置为 200×200px（或 50×50px），然后，图片便会根据 `image-rendering` 指定的算法，缩小或放大到新尺寸。此属性对于未缩放的图像没有影响。
+
+比如正常放大时，边缘会模糊，但我们可以设置 `image-rendering:pixelated` 来让边缘变得锐利。
+
+左边没有设置，右边设置了`image-rendering:pixelated`；
+
+ <img style="width: 280px;display:inline-block;" src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+ <img style="width: 280px; image-rendering:pixelated;display:inline-block;" src="https://interactive-examples.mdn.mozilla.net/media/examples/balloon-small.jpg"/>
+
+## :in-range / :out-of-range
+
+当一个 `input` 输入框，中输入得值，在 `min` 和 `max` 之间，则使用 `:in-range` 样式，如果超出范围，则使用 `:out-of-range` 样式
+
+``` css
+<input type="number" min="1" max="99" />
+
+input:in-range {
+  background-color: rgba(0, 255, 0, 0.25);
+}
+input:out-of-range {
+  background-color: rgba(255, 0, 0, 0.25);
+  border: 2px solid red;
+}
+```
+<input :class="$style['css-attributes-input-css-range']" style="width: 280px;" type="number" min="1" max="99" />
+
+## position
+
+定位一般很多人都熟悉，在这里只说不熟悉得。
+
+### `fixed` 定位
+
+脱离文档流，参考屏幕视口的位置来指定元素位置。但是也未必，当元素祖先的 `transform`, `perspective` 或 `filter` 属性的值非 `none` 时，容器由视口改为该祖先，即 `fixed` 定位参考该祖先。
+
+<div style="width: 280px; height: 280px; transform: scale(1);background:gray;">
+  父元素设置了 transform: scale(1)
+  <div style="width: 188px; height: 188px; position:fixed; top:58px; left:58px;background:red;">
+    <span>子元素设置为fixed，fixed 定位参考该祖先</span>
+  </div>
+</div>
+
+### `sticky` 定位(粘贴定位)
+
+元素根据正常文档流进行定位，然后相对它的最近滚动祖先，基于 `top`, `right`, `bottom`, 和 `left` 的值进行偏移。
+
+<div style="width: 588px; height: 280px; background:gray; overflow:auto;">
+  <div style="width: 288px; height:588px; background:#059669; overflow:auto;">
+    <p v-for="i in 3">第{{ i }}行元素</p>
+    <p style="position: sticky; top:20px; background:red;">position: sticky; top:20px;</p>
+     <p v-for="i in 18">第{{ i }}行元素</p>
+  </div>
+</div>
+
+滚动绿色区域（父元素）的滚动条。会发现，`sticky` 元素滚动到距离顶部 `20px` 时，不再往上滚动了，而是粘贴在那里了。
+
+当滚动灰色区域（爷爷元素）的滚动条时，会发现。`sticky` 元素不受影响，直接滚上去了。
+
+## resize
+
+`CSS` 属性 `resize` 用于设置元素是否可调整尺寸，以及可调整的方向。
+
+```css
+/* 元素不提供用户可控的调整其尺寸的方法。 */
+resize: none; 
+/* 元素显示可让用户调整其尺寸的机制，可沿水平和竖直方向调整尺寸。 */
+
+resize: both;
+/* 元素显示可让用户沿水平方向调整其尺寸的机制。 */
+resize: horizontal;
+/* 元素显示可让用户沿竖直方向调整其尺寸的机制。 */
+resize: vertical;
+/* 实验性：元素显示可让用户沿块向（水平或竖直方向之一，取决于 writing-mode 和 direction 的值）调整其尺寸的机制。 */
+resize: block;
+/* 实验性：元素显示可让用户沿行向（水平或竖直方向之一，取决于 writing-mode 和 direction 的值）调整其尺寸的机制。 */
+resize: inline;
+```
+[点击查看详情](https://link.segmentfault.com/?enc=nEcWAw%2FyIt9Oaucl50qAKg%3D%3D.CLCtCx1dCinGF2Z5vsnT1k0HUp0lP47izwbKODI4Km0l%2F4ZEoHy5cG%2B04N0OYPsLtA8IgDEN3X56Ywr4%2BlzKTg%3D%3D)
+
+## scroll-behavior
+
+当用户通过 `API` 触发滚动操作时，`CSS` 属性 `scroll-behavior` 为一个滚动框指定滚动行为， 平滑到达还是立即到达
+```css
+scroll-behavior: auto;
+scroll-behavior: smooth;
+```
+[点击查看详情](https://link.segmentfault.com/?enc=3QO%2F6K7sloG3M1i2KWjMuA%3D%3D.mp5eN37huE%2BsyLyK4p5vnEedpu0aqlQ%2FdikNLU9SpNZ5v%2F3%2BK9dina7s6G8H%2BnDcTGhWsCXGbZhAcKMmyk7k8B%2FbSVfHnzgD4LPhhqioADY%3D)
+
+## root
+匹配文档树的根元素。对于 `HTML` 来说，`:root` 表示 `<html>` 元素，除了优先级更高之外，与 `html` 选择器相同。
+```css
+:root {
+  --main-color: hotpink;
+  --pane-padding: 5px 42px;
+}
+```
+
+## columns / widows
+
+```css
+columns: 3; /*3列，列宽自动 */
+```
+<div style="background:gray; columns: 3">
+  It is spring again and the window can be left open as often as one would like. As spring comes in through the windows, so people -- unable to bear staying inside any longer -- go outdoors.The spring outside, however, is much too cheap, for the sun shines on everything, and so does not seem as bright as that which shoots into the darkness of the house. Outside the sun-sloshed breeze blows everywhere, but it is not so lively as that which stirs the gloominess inside the house.Optimism and Pessimistic Optimism and Pessimistic
+</div>
+
+```css
+columns: 288px auto; /*设置每列宽度为160px，列数自动*/
+```
+<div style="background:gray; columns: 288px auto;margin-bottom:20px;">
+  It is spring again and the window can be left open as often as one would like. As spring comes in through the windows, so people -- unable to bear staying inside any longer -- go outdoors.The spring outside, however, is much too cheap, for the sun shines on everything, and so does not seem as bright as that which shoots into the darkness of the house. Outside the sun-sloshed breeze blows everywhere, but it is not so lively as that which stirs the gloominess inside the house. Optimism and Pessimistic Optimism and Pessimistic
+</div>
+
+`widows`(不是 `windows`，没有 `n`，中文为寡妇的意思)用来设置一个块级容器在新的区域需要结合在一起的最小行数。
+
+比如上个🌰，分为两列，每列 `7` 行，就可以将内容展示完。但是如果我们设置 
+``` css
+widows: 12
+```
+
+<div style="background:gray; columns: 3; widows: 12;">
+  It is spring again and the window can be left open as often as one would like. As spring comes in through the windows, so people -- unable to bear staying inside any longer -- go outdoors.The spring outside, however, is much too cheap, for the sun shines on everything, and so does not seem as bright as that which shoots into the darkness of the house. Outside the sun-sloshed breeze blows everywhere, but it is not so lively as that which stirs the gloominess inside the house.
+</div>
+
+则会看到，有一列变成了 `12` 行。
+
+## max() / min()
+
+`max` 在两者这件取最大；`min` 函数在两者之间取最小。
+
+max，min 可以用在任何可以设置 `<length>, <frequency>, <angle>, <time>, <percentage>, <number>, or <integer>` 等值的地方
+
+```css
+width: max(50vw, 300px);
+width: min(50vw, 300px);
+```
+<div style="background:gray;margin-bottom:20px; width: max(588px, 288px);"> width: max(50vw, 300px) </div>
+<div style="background:gray;margin-bottom:20px; width: min(30vw, 588px);"> width: max(50vw, 300px) </div>
+
+## clamp()
+
+`clamp` 函数会在定义的 三个值之间，取中间的那个值，是大小在中间，不是位置在中间，
+
+> clamp(MIN, VAL, MAX)
+
+和 `max，min` 函数一样，可以用在任何可以设置 `<length>, <frequency>, <angle>, <time>, <percentage>, <number>, or <integer>` 等值的地方
+
+```css
+font-size: clamp(1px, 3px, 2px);    //中间值为2px
+font-size: clamp(1px, 3px, 5px);    //中间值为3px
+font-size: clamp(4px, 3px, 5px);    //中间值为4px
+
+width: clamp(200rem, 25vw, 150px);  //在这三个之间取中间值
+```
+
 <script setup>
   import { ref } from 'vue';
 
@@ -623,5 +946,14 @@ object-position: right top;
     line-height: 2;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
+  }
+
+
+  .css-attributes-input-css-range:in-range {
+    background-color: rgba(0, 255, 0, 0.25);
+  }
+  .css-attributes-input-css-range:out-of-range {
+    background-color: rgba(255, 0, 0, 0.25);
+    border: 2px solid red;
   }
 </style>
