@@ -866,6 +866,97 @@ font-size: clamp(4px, 3px, 5px);    //中间值为4px
 width: clamp(200rem, 25vw, 150px);  //在这三个之间取中间值
 ```
 
+## conic-gradient()
+
+在渐变中我们知道，有:
+
+- 线性渐变,linear-gradient，从一个方向，沿着另一个方向，颜色线性过渡。
+  
+<div style="width: 188px; height: 88px; background: linear-gradient(red, orange, green);"></div>
+
+- 径向基渐变，radial-gradient，从某一个点，沿圆环向外慢慢辐射。
+<div style="width: 188px; height: 88px; background: radial-gradient(red, orange, green);"></div>
+
+除此之外，还有一种渐变，叫"锥形渐变"。它是围绕中心点按照扇形方向进行旋转的渐变(而不是从中心点辐射)
+
+``` css
+background: conic-gradient(red, orange, black, green, blue);
+```
+默认从时钟 `12` 点，按照顺时针旋转渐变
+<div style="width: 188px; height: 88px; background: conic-gradient(red, orange, black, green, blue);"></div>
+
+``` css
+background: conic-gradient(from 90deg, red, orange, black, green, blue);
+```
+
+可以指定开始的基准点为 `90` 度，即以时钟 `3` 点为起始 `0` 点
+<div style="width: 188px; height: 88px; background: conic-gradient(from 90deg, red, orange, black, green, blue);"></div>
+
+``` css
+background: conic-gradient(from 90deg, red, orange 180deg, black, green, blue);
+```
+还可以设置每个颜色的过渡中心带，以基准 `from xxx` 为`0`，上面的橙色中心过渡带，表示 `from 90deg` 的基础上，再加上 `180deg`，设置为中心带
+<div style="width: 188px; height: 88px;background: conic-gradient(from 90deg, red, orange 180deg, black, green, blue);"></div>
+
+## writing-mode
+
+定义了文本水平或垂直排布以及在块级元素中文本的书写方向
+
+- `horizontal-tb` 表示水平书写，从上(`top`)到下(`bottom`)书写
+- `vertical-rl` 表示垂直书写，从右(`right`)向左(`left`)(古人书法就这么写的)
+- `vertical-lr` 表示垂直书写，从左向右
+> ⚠️ 注意没有 `horizontal-bt`,不要杜撰
+
+## inline-size
+
+和元素的 `width，height` 效果一样，都会改变盒子的大小。但是会覆盖 `width，height` 值。
+
+不同在于，`width` 是绝对的水平方向，`height` 是绝对的竖直方向；
+
+而 `inline-size` 是相对的水平方向，可通过 `writing-mode` 模式，改变方向
+
+``` css
+width: 188px;
+height: 58px;
+inline-size: 600px;
+background: gray;
+```
+默认 `inline-size` 和 `width` 方向一致，覆盖 `width`
+
+<div style="width: 188px; height: 58px;background:gray;inline-size:600px;">This is a box where you can change the inline-size</div>
+
+``` css
+width: 188px;
+height: 58px;
+inline-size: 188px;
+background: gray;
+```
+设置 `writing-mode` 模式，改变方向，`inline-size` 和 `height` 方向一致，覆盖 `height`
+<div style="width: 188px; height: 58px;background:gray;inline-size:188px;writing-mode: vertical-rl;">This is a box where you can change the inline-size</div>
+
+## block-size
+
+类似于 `inline-size`，只不过和 `inline-size` 刚好相反，`block-size` 默认设置的是 `height` 方向的值。
+
+``` css
+width: 188px;
+height: 58px;
+block-size: 188px;
+background: gray;
+```
+默认 `block-size` 和 `height` 方向一致，覆盖 `height`
+
+<div style="width: 188px; height: 58px;background:gray;block-size:188px;">This is a box where you can change the inline-size</div>
+
+``` css
+width: 88px;
+height: 58px;
+block-size: 600px;
+background: gray;
+```
+设置 `writing-mode` 模式，改变方向，`block-size` 和 `width` 方向一致，覆盖 `width`
+<div style="width: 188px; height: 58px;background:gray;block-size:600px;writing-mode: vertical-rl;">This is a box where you can change the inline-size</div>
+
 <script setup>
   import { ref } from 'vue';
 
