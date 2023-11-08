@@ -1,21 +1,11 @@
 # CSS 常用语法记录
 
-## aspect-ratio 为元素设置宽高比
-```css
-.img_container {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-```
-![img load err](./images/aspect-ratio.png)
-
-
 ## 刘海屏顶部定位兼容
 
-1. 在index.html文件的meta标签content属性中添加viewport-fit=cover值开启ios的安全区域模式。
-2. 给需要定位的模块设置默认的top值，安卓设备会使用这个默认值
-3. 有些全屏面的安卓手机(例如小米10)会将专门给ios刘海屏的top: env(safe-area-inset-top)属性识别0，所以判断系统是否为ios，给ios系统添加一个特定的类topfix，让元素在ios下使用特殊的高度。
-4. 通过CSS的@supports函数判断，仅在支持top: env(safe-area-inset-top)属性的ios设备下使用top: env(safe-area-inset-top)值。
+1. 在 `index.html` 文件的 `meta` 标签 `content` 属性中添加 `viewport-fit=cover` 值开启 `ios` 的安全区域模式。
+2. 给需要定位的模块设置默认的 `top` 值，安卓设备会使用这个默认值
+3. 有些全屏面的安卓手机(例如小米10)会将专门给ios刘海屏的 `top: env(safe-area-inset-top)` 属性识别0，所以判断系统是否为 `ios`，给 `ios` 系统添加一个特定的类 `topfix`，让元素在 `ios`下使用特殊的高度。或者使用 `max()` 函数选最大值去设置。
+4. 通过 `CSS` 的 `@supports` 函数判断，仅在支持 `top: env(safe-area-inset-top)` 属性的 `ios` 设备下使用 `top: env(safe-area-inset-top)` 值。
 
 ::: details 点击查看详情
 index.html中的meta标签添加viewport-fit=cover,开启ios安全区域模式
@@ -23,39 +13,29 @@ index.html中的meta标签添加viewport-fit=cover,开启ios安全区域模式
 
 <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 ```
-给ios添加默认的topfix类
-```js
-if (isIos) {
-  document.querySelector('.home').classList.add('topfix');
-}
-```
+
 css样式
 ```css
-/* 安卓使用默认的高度 */
-.home {
-  .topContent {
-    top: 2rem;
-  }
-}
 
-/* 不支持top: env(safe-area-inset-top)的ios设备使用的自定义的top值 */
-.home {
-  &.topfix {
-    .topContent {
-      top: 2rem;
+#root {
+  --safe-top: max(1.25rem, env(safe-area-inset-top));
+
+/* 支持top: env(safe-area-inset-top)的设备使用 env(safe-area-inset-top)值 */
+  @supports (padding-top: env(safe-area-inset-top)) {
+    .page-router {
+      padding-top: calc(2.75rem + var(--safe-top));
+      .router-header {
+        padding-top: max(1.25rem, var(--safe-top));
+      }
     }
   }
-}
 
-/* 支持top: env(safe-area-inset-top)的ios设备使用top: env(safe-area-inset-top)值 */
-@supports (top: env(safe-area-inset-top)) {
-  .home {
-    &.topfix {
-      .topContent {
-        top: env(safe-area-inset-top);
-        /* env(safe-area-inset-top)支持计算属性 */
-        top: calc(env(safe-area-inset-top) + 2rem);
-        
+/* 不支持top: env(safe-area-inset-top)的设备使用的自定义的值 */
+  @supports not (padding-top: env(safe-area-inset-top)) {
+    .page-router {
+      padding-top: calc(2.75rem + 1.25rem);
+      .router-header {
+        padding-top: 1.25rem;
       }
     }
   }
