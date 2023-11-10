@@ -14,8 +14,8 @@ hero:
       text: 开卷!
       link: /web-doc/index
     - theme: alt
-      text: 还是躺会先?
-      link: https://v.qq.com/channel/cartoon/list?filter_params=iarea%3D1&page_id=
+      text: 摸会鱼?
+      link: /project/tetris
 
 features:
     - title: 整理一些 knowledge 
