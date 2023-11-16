@@ -10,6 +10,7 @@
 
 ::: details 实现防抖函数
 ```js
+// js
 function debounce(fn, wait) {
   // 通过闭包缓存定时器 id
   let timer = null
@@ -25,6 +26,43 @@ function debounce(fn, wait) {
     }, wait)
   }
 }
+
+// ts
+/**
+ * 防抖函数
+ * @param {*} func 需要防抖的函数
+ * @param {*} wait 防抖时间间隔
+ * @param {*} immediate 第一次是否立即执行
+ */
+export function debounce(
+  func: (...args: any[]) => void,
+  wait: number,
+  immediate = false
+): (...args: any[]) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null
+
+  function debounced(...args: any[]): void {
+    const callNow = immediate && !timeout
+
+    if (timeout) {
+      clearTimeout(timeout)
+    }
+
+    timeout = setTimeout(() => {
+      timeout = null
+      if (!immediate) {
+        func(...args)
+      }
+    }, wait)
+
+    if (callNow) {
+      func(...args)
+    }
+  }
+
+  return debounced
+}
+
 ```
 :::
 
@@ -52,6 +90,42 @@ function throttle(fn, wait) {
       fn.apply(this, arguments)
     }
   }
+}
+
+// ts
+/**
+ * 截流函数
+ * @param {*} func 需要截流的函数
+ * @param {*} wait 等待时间
+ */
+export function throttle(func: (...args: any[]) => void, wait: number): (...args: any[]) => void {
+  let isThrottled = false
+  let lastArgs: any[] | null = null
+  let timeoutId: number | null = null
+
+  function throttled(...args: any[]): void {
+    if (isThrottled) {
+      // 如果已经在节流状态，则存储最新的参数
+      lastArgs = args
+    } else {
+      // 如果不在节流状态，则立即执行函数
+      func(...args)
+      isThrottled = true
+
+      // 设置定时器，在指定的时间后将节流状态重置
+      timeoutId && clearTimeout(timeoutId)
+      timeoutId = window.setTimeout(() => {
+        isThrottled = false
+        if (lastArgs) {
+          // 如果存在存储的参数，则以最新参数再次执行函数
+          throttled(...lastArgs)
+          lastArgs = null
+        }
+      }, wait)
+    }
+  }
+
+  return throttled
 }
 ```
 :::
