@@ -15,7 +15,7 @@ hero:
       link: /web-doc/index
     - theme: alt
       text: 摸会鱼?
-      link: /project/tetris
+      link: /project/index
 
 features:
     - title: 整理一些 knowledge 
