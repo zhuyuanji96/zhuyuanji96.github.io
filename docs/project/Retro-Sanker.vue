@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 let adTimer = null;
 let curSpeed = 1;
 let isPause = false;
@@ -90,7 +90,7 @@ function createCanvas(rows, cols, cellWidth, cellHeight) {
   }
 
   const gameContainer = document.getElementById('gameContainer');
-  gameContainer.appendChild(mc);
+  gameContainer && gameContainer.appendChild(mc);
 }
 
 //生成一条一开始的蛇模型
@@ -116,12 +116,12 @@ function clearSnake() {
 }
 
 //随机生成食物点
-let x, y;
+let foodX, foodY;
 function createFood() {
-  x = Math.floor(Math.random() * 60);
-  y = Math.floor(Math.random() * 30);
+  foodX = Math.floor(Math.random() * 60);
+  foodY = Math.floor(Math.random() * 30);
   snake_ctx.fillStyle = 'orange';
-  snake_ctx.fillRect(x * 15 + 1, y * 15 + 1, 13, 13);
+  snake_ctx.fillRect(foodX * 15 + 1, foodY * 15 + 1, 13, 13);
 }
 
 // 处理转向
@@ -152,19 +152,18 @@ function handleMove(direction) {
 }
 // 处理得分
 function handleGetScore() {
-  if (x == intSnake[0].x && y == intSnake[0].y) {
+  const eatFoodList = intSnake.filter(item => item.x === foodX && item.y === foodY);
+  if (eatFoodList.length > 0) {
     createFood();
     const scoreEle = document.getElementById('curScoreEle');
     const speedEle = document.getElementById('curSpeedEle');
     scoreEle.innerHTML = curScore += 5;
     localStorage.setItem('score_snake', curScore);
-    if (curScore > curSpeed * 10) {
+    if (curScore > curSpeed * 50) {
       speedEle.innerHTML = curSpeed += 1;
       localStorage.setItem('speed_snake', curSpeed);
     }
-    a = intSnake[0].x;
-    b = intSnake[0].y;
-    intSnake.push({ x: a, y: b, color: 'green' });
+    intSnake.push({ x: intSnake[0].x, y: intSnake[0].y, color: 'green' });
   }
 }
 
@@ -212,7 +211,6 @@ function check() {
 }
 //控制模型改变方向
 let go = 'right';
-let a, b;
 
 function goRight() {
   go = 'right';
@@ -268,25 +266,54 @@ const handleControlBtnClick = keyCode => {
         clearInterval(adTimer);
         adTimer = setInterval(goLeft, 500 / curSpeed);
       }
-      return false;
+      break;
     case 38:
       if (go !== 'down' && go !== 'top') {
         clearInterval(adTimer);
         adTimer = setInterval(goDown, 500 / curSpeed);
       }
-      return false;
+      break;
     case 39:
       if (go !== 'right' && go !== 'left') {
         clearInterval(adTimer);
         adTimer = setInterval(goRight, 500 / curSpeed);
       }
-      return false;
+      break;
     case 40:
       if (go !== 'down' && go !== 'top') {
         clearInterval(adTimer);
         adTimer = setInterval(goTop, 500 / curSpeed);
       }
-      return false;
+      break;
+    // 开始 暂停
+    case 32:
+      handlePauseContinue();
+      break;
+  }
+};
+
+const handlePauseContinue = () => {
+  if (isPause) {
+    switch (go) {
+      case 'top':
+        adTimer = setInterval(goTop, 500 / curSpeed);
+        break;
+      case 'down':
+        adTimer = setInterval(goDown, 500 / curSpeed);
+        break;
+      case 'left':
+        adTimer = setInterval(goLeft, 500 / curSpeed);
+        break;
+      case 'right':
+        adTimer = setInterval(goRight, 500 / curSpeed);
+        break;
+      default:
+        break;
+    }
+    isPause = false;
+  } else {
+    clearInterval(adTimer);
+    isPause = true;
   }
 };
 
@@ -314,6 +341,10 @@ onMounted(() => {
   adTimer = setInterval(goRight, 500 / curSpeed);
   createFood();
   // 默认暂停
-  // handleControlBtnClick(32);
+  handleControlBtnClick(32);
+});
+
+onUnmounted(() => {
+  adTimer && clearInterval(adTimer);
 });
 </script>

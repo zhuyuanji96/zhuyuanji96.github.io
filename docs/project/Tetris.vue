@@ -407,27 +407,23 @@ const rotate = function () {
 
 // 控制按钮
 const handleControlBtnClick = keyCode => {
+  if (!isPlaying) return;
+
   switch (keyCode) {
     case 40:
-      if (!isPlaying) return;
       moveDown();
       break;
     case 37:
-      if (!isPlaying) return;
       moveLeft();
       break;
     case 38:
-      if (!isPlaying) return;
       rotate();
       return false;
     case 39:
-      if (!isPlaying) return;
       moveRight();
       break;
     // 开始 暂停
     case 32:
-      if (!isPlaying) return;
-
       if (isPause) {
         curTimer = setInterval(() => moveDown(), 1000 / curSpeed);
         isPause = false;
