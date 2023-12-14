@@ -90,7 +90,7 @@ export default defineConfig({
           items: [
             { text: 'git常用指令', link: '/study-blog/git-command' },
             { text: 'git常用配置', link: '/study-blog/git-record' },
-            { text: 'npm常用指令', link: '/study-blog/npm-command' },
+            { text: 'node那些事', link: '/study-blog/about-node' },
             { text: 'vsCode配置', link: '/study-blog/vscode-config' },
             { text: 'Zsh命令行工具', link: '/study-blog/zsh' },
             { text: 'iTerm2 Profiles快捷登录ssh', link: '/study-blog/iterm2' },
