@@ -37,7 +37,7 @@ export default defineConfig({
           items: [
             { text: '数据类型', link: '/web-doc/js-types.md' },
             { text: '类型转换', link: '/web-doc/js-conversions.md' },
-            { text: 'ES6常用知识点', link: '/web-doc/es6.md' },
+            { text: 'ES6知识点', link: '/web-doc/es6.md' },
             { text: 'JS基础API介绍&实现', link: '/web-doc/js-base-api.md' },
             { text: 'JS模块化', link: '/web-doc/module.md' },
             { text: 'JS原型、原型链', link: '/web-doc/js-prototype' },

@@ -1263,3 +1263,42 @@ Promise.prototype.finally = function (callback) {
   - 将多个 `Promise` 实例，包装成一个新的 `Promise` 实例，新的 `Promise` 实例只有等到所有这些参数实例都返回结果，不管是 `fulfilled` 还是 `rejected` ，包装实例才会结束，一旦结束，状态总是 `fulfilled`
 - `Promise.any()` (ES2021)
   - 将多个 `Promise` 实例，包装成一个新的 `Promise` 实例，只要参数实例有一个变成 `fulfilled` 状态，包装实例就会变成 `fulfilled` 状态；如果所有参数实例都变成 `rejected` 状态，包装实例才会变成 `rejected` 状态
+
+## `Symbol`类型和`Symbol`属性
+
+`Symbol` 是一种新的原始数据类型，用于创建唯一的标识符。
+
+`Symbol`属性是对象中使用 `Symbol`作为键创建的属性。
+
+``` js
+const sym = Symbol('description');
+
+const obj = {
+  [sym]: 'value'
+};
+
+console.log(obj[sym]); // value
+```
+
+## `WeakMap`和`WeakSet`
+
+`WeakMap` 是一种集合类型，其中键必须是对象，并且在没有其他引用时会被垃圾回收。
+
+`WeakSet`是一种集合类型，其中元素必须是对象，并且在没有其他引用时会被垃圾回收。
+``` js
+const wm = new WeakMap();
+
+const obj = {};
+
+wm.set(obj, 'value');
+
+console.log(wm.get(obj)); // value
+
+const ws = new WeakSet();
+
+ws.add(obj);
+
+console.log(ws.has(obj)); // true
+```
+
+在这个例子中，我们创建了一个`WeakMap`和一个`WeakSet`实例。我们使用 `set()` 方法将 `obj` 对象添加到 `WeakMap`中，并将值设置为 `value`。然后，我们使用 `get()` 方法从 `WeakMap` 中获取值。类似地，我们使用 `add()`方法将 `obj` 对象添加到 `WeakSet` 中，并使用 `has()` 方法检查集合中是否存在该对象。
