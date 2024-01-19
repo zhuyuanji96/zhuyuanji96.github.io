@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as s,e as a}from"./app.45f88402.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"trick-list/index.md"}'),n={name:"trick-list/index.md"},o=a("p",null,"技巧",-1),r=[o];function c(i,d,_,l,p,m){return t(),s("div",null,r)}const x=e(n,[["render",c]]);export{u as __pageData,x as default};

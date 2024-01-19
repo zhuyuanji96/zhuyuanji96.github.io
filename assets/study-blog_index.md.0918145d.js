@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as a}from"./app.2f43319e.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"study-blog/index.md"}'),o={name:"study-blog/index.md"};function n(r,s,c,d,i,p){return t(),a("div")}const m=e(o,[["render",n]]);export{l as __pageData,m as default};
